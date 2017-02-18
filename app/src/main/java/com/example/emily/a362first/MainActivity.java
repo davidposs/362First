@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     NodeList nodelist;
     EditText title, link;
-    ProgressDialog pDialog;
     boolean running = false;
     SensorManager sensorManager;
     TextView pedomSteps, textview;

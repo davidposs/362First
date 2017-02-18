@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="16dp"
-    android:background="#fbfcff"
+
+    android:background="@drawable/space_background"
     tools:context="com.example.emily.a362first.Stopwatch">
 
     <Button
@@ -39,36 +40,50 @@
     <ListView
         android:id="@+id/listView"
         android:layout_below="@+id/btnLap"
-        android:layout_centerHorizontal="true"
+
         android:layout_marginTop="12dp"
         android:layout_marginBottom="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>
 
+<!--
+    <ListView
+        android:id="@+id/listViewTime"
+        android:layout_below="@id/btnLap"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+!-->
     <TextView
         android:includeFontPadding="false"
         android:text="@string/initial_time"
         android:id="@+id/textView"
         android:textStyle="normal"
-        android:textSize="70sp"
-        android:textColor="#39A03D"
+        android:textSize="60sp"
+        android:textColor="#ffffff"
         android:gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:fontFamily="serif-monospace" />
 
     <Button
         android:text="@string/Lap"
         android:textColor="#FFFFFF"
         android:id="@+id/btnLap"
-        android:textSize = "35sp"
+        android:textSize = "50sp"
         android:background="@drawable/circular_button"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="100dp"
+        android:alpha="0.25"
+        android:layout_height="100dp"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp" />
 
 </RelativeLayout>

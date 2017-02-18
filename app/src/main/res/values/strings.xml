@@ -4,5 +4,6 @@
     <string name="Stop">Stop</string>
     <string name="Restart">Restart</string>
     <string name="Lap">Lap</string>
-    <string name="initial_time">00:00:000</string>
+    <string name="initial_time">0:00:000</string>
+    <string name="quote">Quote</string>
 </resources>

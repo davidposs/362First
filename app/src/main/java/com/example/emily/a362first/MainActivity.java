@@ -49,11 +49,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         new DownloadXML().execute(URL);
     }//end onCreate
 
+
     private class DownloadXML extends AsyncTask<String, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
+        //@Override
+        //protected void onPreExecute() {
+        //    super.onPreExecute();
+        //}
 
         @Override
         protected Void doInBackground(String... Url) {
@@ -111,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         running = false;
         //if you unrsiter the hardware will stop detecting steps
     }
-
 
     @Override
     public void onSensorChanged(SensorEvent event) {

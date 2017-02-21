@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pedomSteps = (TextView) findViewById(R.id.textView7);
+        pedomSteps = (TextView) findViewById(R.id.stepcounter);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        textview = (TextView) findViewById(R.id.text);
+        textview = (TextView) findViewById(R.id.quote);
         new DownloadXML().execute(URL);
     }//end onCreate
 

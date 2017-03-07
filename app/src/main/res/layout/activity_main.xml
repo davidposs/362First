@@ -67,15 +67,6 @@
                 android:layout_alignParentStart="true" />
             !-->
 
-            <TextView
-                android:id="@+id/TodoList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="To Do List:"
-                android:textSize="18sp"
-                android:layout_below="@+id/Notes"
-                android:layout_alignParentStart="true" />
-
 
             <!-- Don't change the size of this text view below without testing it,
                  currently android doesn't support a textview that auto-resizes the
@@ -91,7 +82,16 @@
                 android:gravity="start"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_above="@+id/Weather" />
+                />
+
+            <TextView
+                android:id="@+id/stepcounter_Textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Step Counter:"
+                android:textSize="18sp"
+                android:layout_above="@+id/stepcounter"
+                android:layout_alignEnd="@+id/textClock" />
 
             <TextView
                 android:id="@+id/stepcounter"
@@ -100,8 +100,10 @@
                 android:text="00"
                 android:textAlignment="center"
                 android:textSize="36sp"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/stepcounter_Textview" />
+                android:layout_below="@+id/quote"
+                android:layout_alignStart="@+id/stepcounter_Textview"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="17dp" />
 
             <Button
                 android:id="@+id/btnOpenStopWatch"
@@ -109,48 +111,18 @@
                 android:layout_height="wrap_content"
                 android:onClick="openStopwatch"
                 android:text="Stopwatch"
-                android:layout_alignBaseline="@+id/AddToDo"
-                android:layout_alignBottom="@+id/AddToDo"
-                android:layout_alignParentEnd="true" />
+                android:layout_below="@+id/stepcounter"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="107dp" />
 
             <Button
-                android:id="@+id/AddToDo"
+                android:text="To Do"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add to To Do"
-                android:layout_marginTop="97dp"
-                android:layout_below="@+id/stepcounter"
-                android:layout_alignParentStart="true" />
-
-            <TextView
-                android:id="@+id/stepcounter_Textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Step Counter:"
-                android:textSize="18sp"
-                android:layout_below="@+id/textClock"
-                android:layout_alignParentStart="true" />
-
-            <TextView
-                android:id="@+id/Notes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Notes:"
-                android:textColor="#000000"
-                android:textSize="24sp"
-                android:layout_below="@+id/stepcounter"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="16dp" />
-
-            <TextView
-                android:id="@+id/Weather"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="[Weather]"
-                android:textSize="18sp"
-                android:layout_alignBaseline="@+id/Notes"
-                android:layout_alignBottom="@+id/Notes"
-                android:layout_alignParentEnd="true" />
+                android:onClick="openToDO"
+                android:layout_alignBottom="@+id/btnOpenStopWatch"
+                android:layout_alignStart="@+id/stepcounter_Textview"
+                android:id="@+id/todoButton" />
 
         </RelativeLayout>
     </ScrollView>

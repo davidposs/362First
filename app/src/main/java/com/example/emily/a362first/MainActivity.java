@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,8 @@ import java.util.GregorianCalendar;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -126,6 +129,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     public void openStopwatch(View view) {
         Intent intent = new Intent(this, Stopwatch.class);
+        startActivity(intent);
+    }
+
+    public void openToDO(View view){
+        Intent intent = new Intent(this, TDLIST.class);
         startActivity(intent);
     }
 }

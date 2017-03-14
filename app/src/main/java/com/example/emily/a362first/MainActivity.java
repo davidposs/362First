@@ -34,7 +34,6 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
-    //Iteration 2
 
     NodeList nodelist;
     EditText title, link;

@@ -1,5 +1,4 @@
 package com.example.emily.a362first;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,6 +19,7 @@ import static com.example.emily.a362first.R.id.lvItems;
 /**
  * Created by Emily on 3/7/2017.
  */
+
 public class TDLIST extends Activity {
     private ArrayList<String> items;
     private ArrayAdapter<String> itemsAdapter;

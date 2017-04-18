@@ -1,5 +1,6 @@
 package com.example.emily.a362first;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +32,9 @@ import java.util.GregorianCalendar;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
-
-    //Iteration 2
 
     NodeList nodelist;
     EditText title, link;
@@ -51,15 +51,20 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         textview = (TextView) findViewById(R.id.quote);
         new DownloadXML().execute(URL);
+        Button btnWeather = (Button) findViewById(R.id.yourButtonsId);
+        btnWeather.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://weather.com/weather/today/l/USCA0408:1:US"));
+                startActivity(intent);
+            }
+        });
     }//end onCreate
 
 
     private class DownloadXML extends AsyncTask<String, Void, Void> {
-        //@Override
-        //protected void onPreExecute() {
-        //    super.onPreExecute();
-        //}
-
         @Override
         protected Void doInBackground(String... Url) {
             try {
@@ -138,4 +143,47 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         Intent intent = new Intent(this, TDLIST.class);
         startActivity(intent);
     }
+
+    public void openAlarmClock(View view) {
+        Intent intent = new Intent(this, AlarmClock.class);
+        startActivity(intent);
+    }
+
+
+
+    public void OpenDiary(View view)
+    {
+        Intent intent = new Intent(this, Diary.class);
+        intent.putExtra("Main", "no");
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        switch (requestCode) {
+            case 1:
+                if(resultCode == Activity.RESULT_CANCELED)
+                {
+
+                }
+
+
+        }
+    }
+
+
+
+/*
+    public void Cancel(View view) {
+        Intent intent = new Intent(this, FoodEntry.class);
+        setResult(Diary.RESULT_CANCELED, intent);
+        finish();
+    }
+*/
+
+    public void openWeather(View view) {
+
+    }
+
 }

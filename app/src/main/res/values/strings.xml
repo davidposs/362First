@@ -6,4 +6,19 @@
     <string name="Lap">Lap</string>
     <string name="initial_time">0:00:000</string>
     <string name="quote">Quote</string>
+
+    <string-array name="whale_array">
+        <item>Choose a ringtone</item>
+        <item>Broke for Free</item>
+        <item>Ghost Dance</item>
+        <item>I love you</item>
+        <item>Last Dance</item>
+        <item>Ragtime Dance</item>
+        <item>Requiem for a Fish</item>
+        <item>Springish</item>
+        <item>Take Me Higher</item>
+        <item>The Entertainer</item>
+    </string-array>
+    <string name="title_activity_food_entry">FoodEntry</string>
+
 </resources>

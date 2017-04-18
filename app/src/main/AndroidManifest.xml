@@ -7,22 +7,36 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Lifestyle App"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.MAIN" />
-
             </intent-filter>
-
         </activity>
-        <activity android:name=".Stopwatch"></activity>
-        <activity android:name=".TDLIST"><intent-filter>
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        <activity android:name=".Stopwatch" />
+        <activity android:name=".AlarmClock" />
+        <activity android:name=".TDLIST">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
+        <receiver android:name=".Alarm_Receiver" />
+
+        <service
+            android:name=".RingtonePlayingService"
+            android:enabled="true"></service>
+
+        <activity android:name=".Diary" />
+        <activity android:name=".Home" />
+        <activity
+            android:name=".FoodEntry"
+            android:label="@string/title_activity_food_entry"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

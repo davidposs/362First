@@ -61,8 +61,12 @@ public class TDLIST extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id){
                 TextView viewTest = (TextView) v;
-                ((TextView) v).setPaintFlags(((TextView) v).getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
+                if ((viewTest.getPaintFlags() & Paint.STRIKE_THRU_TEXT_FLAG) > 0) {
+                    viewTest.setPaintFlags(viewTest.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+                }
+                else {
+                    ((TextView) v).setPaintFlags(((TextView) v).getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                }
             }
 
         });
@@ -136,7 +140,6 @@ public class TDLIST extends Activity {
     @Override
     public void onStart() {
         super.onStart();
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();

@@ -60,6 +60,7 @@ public class Stopwatch extends AppCompatActivity {
                 start_time = SystemClock.uptimeMillis();
                 handler.postDelayed(runnable, 0);
                 btnRestart.setEnabled(false);
+                btnLap.setEnabled(true);
             }
         });
 
@@ -69,6 +70,7 @@ public class Stopwatch extends AppCompatActivity {
                 time_buff += time_in_milliseconds;
                 handler.removeCallbacks(runnable);
                 btnRestart.setEnabled(true);
+                btnLap.setEnabled(false);
             }
         });
 

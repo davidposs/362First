@@ -1,14 +1,7 @@
 package com.example.emily.a362first;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,9 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -28,39 +19,55 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import java.net.URL;
-import java.util.GregorianCalendar;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
+public class MainActivity extends AppCompatActivity { //implements SensorEventListener {
 
     /*
-    TF is this?
-    <<<<<<< HEAD
-=======
-
->>>>>>> 07e31ae5eeb086b7c23209ef55ad04fd09fb84bd
-
-     */
-
+    TODO
+    Weather - have it auto select based on users location
+    Stopwatch - make buttons look prettier, lap shouldn't work when it is paused
+    Food Intake - should sum up calories for each day
+    Quote - text box
+    Reflection - should save after each day
+    Make app look nicer
+    */
 
     NodeList nodelist;
     EditText title, link;
     boolean running = false;
-    SensorManager sensorManager;
-    TextView pedomSteps, textview;
+
+    /* TextViews for step counter and Quote of the Day */
+    TextView pedomSteps, QoTD;
+
+    /* URL we fetch quote from */
     String URL = "https://www.quotesdaddy.com/feed/tagged/Inspirational";
+
+    /* Sensors for the pedometer */
+    //Sensor stepCounter; //stepDetector
+    //SensorManager sensorManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /* Basic necessities */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pedomSteps = (TextView) findViewById(R.id.stepcounter);
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        textview = (TextView) findViewById(R.id.quote);
+
+        /* Step Counter Initializations
+        *  Code for Pedometer. Uncomment if you want to work on it.
+        * */
+        //pedomSteps = (TextView) findViewById(R.id.stepcounter);
+        //sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        //stepCounter = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        //stepDetector = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+
+        /* Quote of the Day */
+        QoTD = (TextView) findViewById(R.id.quote);
         new DownloadXML().execute(URL);
+
+        /* Weather */
         Button btnWeather = (Button) findViewById(R.id.yourButtonsId);
         btnWeather.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -74,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }//end onCreate
 
 
+    /* Download the Quote of the Day and display it */
     private class DownloadXML extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... Url) {
@@ -98,13 +106,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
                     // Set the texts into TextViews from item nodes
-                    // Get the channel
-                    textview.setText(textview.getText() +
+                    QoTD.setText(QoTD.getText() +
                             getNode("title", eElement) + "\n");
                 }
             }
         }
-    }
+    }//end DownloadXML
 
     private static String getNode(String sTag, Element eElement) {
         NodeList nlList = eElement.getElementsByTagName(sTag).item(0)
@@ -113,43 +120,73 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         return nValue.getNodeValue();
     }
 
+
+
+    protected void onStop() {
+        super.onStop();
+        /* Code for Pedometer. Uncomment it if you want to work on it */
+        //sensorManager.unregisterListener(this, stepCounter);
+        //sensorManager.unregisterListener(this, stepDetector);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
+
+        //sensorManager.registerListener(this, stepCounter, sensorManager.SENSOR_DELAY_FASTEST);
+        //sensorManager.registerListener(this, stepDetector, sensorManager.SENSOR_DELAY_FASTEST);
+
+        /* Old pedometer code, didn't work accurately.
         running = true;
-        Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        Sensor countSensor = sensorManager.getDefaultSensor(TYPE_STEP_COUNTER);
         if (countSensor != null) {
             sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
         } else {
             Toast.makeText(this, "Sensor not found!", Toast.LENGTH_SHORT).show();
         }
+        */
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        running = false;
+        //running = false;
         //if you unrsiter the hardware will stop detecting steps
     }
 
+    /* Part of pedometer. Uncomment if you want to work on it
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (running) {
-            pedomSteps.setText(String.valueOf(event.values[0]));
+        Sensor sensor = event.sensor;
+        float[] values = event.values;
+        int value = -1;
+
+        if (values.length > 0) {
+            value = (int)values[0];
+        }
+
+        if (sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+            pedomSteps.setText(value);
+        }
+        else if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
+            pedomSteps.setText(value);
         }
     }
+    */
 
+
+    /* Part of Pedometer. Uncomment if you want to work on it
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
-
+    */
     public void openStopwatch(View view) {
         Intent intent = new Intent(this, Stopwatch.class);
         startActivity(intent);
     }
 
-    public void openToDO(View view){
+    public void openToDO(View view) {
         Intent intent = new Intent(this, TDLIST.class);
         startActivity(intent);
     }
@@ -159,38 +196,26 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         startActivity(intent);
     }
 
-
-
-    public void OpenDiary(View view)
-    {
+    public void openDiary(View view) {
         Intent intent = new Intent(this, Diary.class);
         intent.putExtra("Main", "no");
         startActivityForResult(intent, 1);
     }
 
+    public void openReflection(View view) {
+        Intent intent = new Intent(this, Reflection.class);
+        startActivity(intent);
+    }
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case 1:
-                if(resultCode == Activity.RESULT_CANCELED)
-                {
-
+                if (resultCode == Activity.RESULT_CANCELED) {
+                    //????????????????
                 }
-
-
         }
     }
-
-
-
-/*
-    public void Cancel(View view) {
-        Intent intent = new Intent(this, FoodEntry.class);
-        setResult(Diary.RESULT_CANCELED, intent);
-        finish();
-    }
-*/
 
     public void openWeather(View view) {
 

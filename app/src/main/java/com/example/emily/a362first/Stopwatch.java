@@ -1,17 +1,18 @@
 package com.example.emily.a362first;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.os.Handler;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
 
 public class Stopwatch extends AppCompatActivity {
 
@@ -22,13 +23,14 @@ public class Stopwatch extends AppCompatActivity {
     int seconds, minutes, milliseconds, counter;
     ListView listView;
     ListView listViewTime;
-    String[] ListElements = new String[] {};
+    String[] ListElements = new String[]{};
     List<String> ListElementsArrayList;
 
-    String[] TimeElements = new String[] {};
+    String[] TimeElements = new String[]{};
     List<String> ListElementsTimeList;
     ArrayAdapter<String> adapter;
     ArrayAdapter<String> time_adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +45,6 @@ public class Stopwatch extends AppCompatActivity {
         counter = 0;
         handler = new Handler();
 
-        //listViewTime = (ListView) findViewById(R.id.listViewTime);
-
         ListElementsArrayList =
                 new ArrayList<String>(Arrays.asList(ListElements));
 
@@ -52,16 +52,7 @@ public class Stopwatch extends AppCompatActivity {
                 R.layout.stopwatch,
                 ListElementsArrayList);
 
-        //ListElementsTimeList =
-        //        new ArrayList<String>(Arrays.asList(TimeElements));
-
-        //time_adapter = new ArrayAdapter<String>(Stopwatch.this,
-        //        R.layout.right_aligned_list_view,
-        //        ListElementsTimeList
-        //        );
-
         listView.setAdapter(adapter);
-        //listViewTime.setAdapter(time_adapter);
 
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,23 +97,21 @@ public class Stopwatch extends AppCompatActivity {
                 counter++;
                 ListElementsArrayList.add(String.valueOf(counter) + ".  "
                         + textView.getText().toString());
-                //listView.setAdapter(time_adapter);
-                //ListElementsTimeList.add(".   " + textView.getText().toString());
-                //listView.setAdapter(adapter);
             }
         });
     }
-        public Runnable runnable = new Runnable() {
-            public void run() {
-                time_in_milliseconds = SystemClock.uptimeMillis() - start_time;
-                update_time = time_buff + time_in_milliseconds;
-                seconds = (int)(update_time/ 1000);
-                minutes = seconds / 60;
-                seconds %= 60;
-                milliseconds = (int)(update_time % 1000);
-                textView.setText("" + minutes + ":" + String.format("%02d", seconds) + ":" +
+
+    public Runnable runnable = new Runnable() {
+        public void run() {
+            time_in_milliseconds = SystemClock.uptimeMillis() - start_time;
+            update_time = time_buff + time_in_milliseconds;
+            seconds = (int) (update_time / 1000);
+            minutes = seconds / 60;
+            seconds %= 60;
+            milliseconds = (int) (update_time % 1000);
+            textView.setText("" + minutes + ":" + String.format("%02d", seconds) + ":" +
                     String.format("%03d", milliseconds));
-                handler.postDelayed(this, 0);
-            }
-        };
+            handler.postDelayed(this, 0);
+        }
+    };
 }

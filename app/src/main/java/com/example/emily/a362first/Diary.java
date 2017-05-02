@@ -4,38 +4,27 @@ package com.example.emily.a362first;
  * Created by David on 4/13/2017.
  */
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ScrollingTabContainerView;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Diary extends AppCompatActivity {
 
     // static ListView lv;
     static ArrayList<Log> log = new ArrayList<Log>();
     static ArrayList<TextView> t = new ArrayList<TextView>();
-
     static ArrayList<String> arrayList;// = new ArrayList<String>();
     static ArrayAdapter<String> adapter;
-
     static ArrayList<Integer> arrayList2;
     static ArrayAdapter<Integer> adapter2;
-
-
     static int i = 0;
     static boolean test = false;
     static String food2;
@@ -106,7 +95,7 @@ public class Diary extends AppCompatActivity {
         adapter2 = new ArrayAdapter<Integer>(Diary.this, android.R.layout.simple_list_item_1, arrayList2);
         lv2.setAdapter(adapter2);*/
 
-        if(main.equals("yes"))// "yes");// "yes")) {
+        if (main.equals("yes"))// "yes");// "yes")) {
         {
             /*if(test == false) {
                 test = true;
@@ -132,45 +121,36 @@ public class Diary extends AppCompatActivity {
         }
     }
 
-    public void Back(View view)
-    {
+    public void Back(View view) {
         Intent intent = new Intent(this, MainActivity.class); //changed from home
         setResult(Diary.RESULT_CANCELED, intent);
         finish();
     }
 
-
-    public void AddItem(View view)
-    {
+    public void AddItem(View view) {
         Intent intent = new Intent(this, FoodEntry.class);
         startActivityForResult(intent, 1); //1 is the request code
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case 1:
                 if (resultCode == Activity.RESULT_OK) {
                     food2 = FoodEntry.getString(data);
                     cal2 = FoodEntry.getInt(data);
-
                     arrayList.add(food2);
                     adapter.notifyDataSetChanged();
-
-
                     arrayList2.add(cal2);
                     adapter2.notifyDataSetChanged();
                 }
-                if(resultCode == Activity.RESULT_CANCELED)
-                {
-
+                if (resultCode == Activity.RESULT_CANCELED) {
+                    // ???
                 }
         }
     }
-    public void AddList(String food, int Cal)
-    {
 
+    public void AddList(String food, int Cal) {
         //lv = (ListView)findViewById(R.id.listView);
         //arrayList = new ArrayList<String>();
         //adapter = new ArrayAdapter<String>(Diary.this, android.R.layout.simple_list_item_1, arrayList);

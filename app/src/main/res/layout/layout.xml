@@ -39,6 +39,4 @@
         android:onClick="onAddItem"
         />
 
-
-
 </RelativeLayout>

@@ -1,9 +1,5 @@
 package com.example.emily.a362first;
 
-import android.content.Context;
-import android.os.Debug;
-import android.widget.Toast;
-
 /**
  * Created by Sonal on 4/9/2017.
  */
@@ -20,25 +16,22 @@ public class Log {
     //Operations
 
     //Constructor
-    public Log(String newName, int newCal)
-    {
+    public Log(String newName, int newCal) {
         name = newName;
         calories = newCal;
         totalcalories += newCal;
         totallogs++;
     }
-    public String getFood()
-    {
+
+    public String getFood() {
         return name;
     }
 
-    public int getCal()
-    {
+    public int getCal() {
         return calories;
     }
 
-    public int getLogs()
-    {
+    public int getLogs() {
         return totallogs;
     }
 }

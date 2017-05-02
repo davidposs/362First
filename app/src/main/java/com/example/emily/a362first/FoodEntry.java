@@ -1,12 +1,10 @@
 package com.example.emily.a362first;
 
-        import android.content.Intent;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.EditText;
-        import android.widget.Toast;
-        import java.util.ArrayList;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
 
 public class FoodEntry extends AppCompatActivity {
 
@@ -53,6 +51,7 @@ public class FoodEntry extends AppCompatActivity {
         return intent.getStringExtra("Food");
 
     }
+
     public static int getInt(Intent intent) {
         return intent.getIntExtra("Calories", 0);
     }

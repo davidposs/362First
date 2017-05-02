@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_reflectoin"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.emily.a362first.AddReflection">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text=""
+        android:textSize="30sp"
+        android:gravity="center_horizontal"/>
+
+    <EditText android:id="@+id/enter_content"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/enter_content" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/button_save"
+        android:layout_gravity="end"
+        android:onClick="saveMessage" />
 
 </LinearLayout>

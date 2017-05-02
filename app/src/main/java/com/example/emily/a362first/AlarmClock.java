@@ -12,7 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -20,40 +22,55 @@ import java.util.Calendar;
 
 import static java.lang.String.valueOf;
 
-public class AlarmClock extends AppCompatActivity { //implements AdapterView.OnItemSelectedListener {
+public class AlarmClock extends AppCompatActivity  implements AdapterView.OnItemSelectedListener { //implements AdapterView.OnItemSelectedListener {
 
     AlarmManager alarm_manager;
     TimePicker alarm_timepicker;
     TextView update_text;
     Context context;
     PendingIntent pending_intent;
+    int choose_sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarmclock);
+
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+
         this.context = this;
 
-        //Initialize the Alarm Manager
+        /* Initialize the alarm manager */
         alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        //Initialize the time picker
+        /* Initialize the time picker */
         alarm_timepicker = (TimePicker) findViewById(R.id.timePicker);
 
-        //Initialize the alarm text box
+        /* Initialize the alarm text box */
         update_text = (TextView) findViewById(R.id.update_text);
 
-        // Create Calendar instance
+        /* Create Calendar instance */
         final Calendar calendar = Calendar.getInstance();
 
-        //On click listeners for Start and Clear alarms
+        /* Create intent for Alarm_Receiver */
+        final Intent my_intent = new Intent(this.context, Alarm_Receiver.class);
+
+
+        /* Array adapter for the spinner */
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.whale_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        /* Initialize the spinner */
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
+        /* On click listeners for Start and Clear alarms */
         Button alarm_on = (Button) findViewById(R.id.alarm_on);
         Button alarm_off = (Button) findViewById(R.id.alarm_off);
-
-        //Create intent for Alarm_Receiver to receive
-        final Intent my_intent = new Intent(this.context, Alarm_Receiver.class);
 
         alarm_on.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,24 +79,20 @@ public class AlarmClock extends AppCompatActivity { //implements AdapterView.OnI
                 calendar.set(Calendar.HOUR_OF_DAY, alarm_timepicker.getHour());
                 calendar.set(Calendar.MINUTE, alarm_timepicker.getMinute());
 
-                //Get integer values of time chosen by user
+                /* Get integer values of time chosen by user */
                 int hour = alarm_timepicker.getHour();
                 int minutes = alarm_timepicker.getMinute();
 
-                //Convert ints to strings
+                /* Convert ints to strings */
                 String minute_string = String.valueOf(minutes);
                 String hour_string = String.valueOf(hour);
                 String time_of_day = "AM";
                 if (minutes < 10) {
-                        minute_string = "0" + valueOf(minutes);
-                }
-                else {
-                    minute_string = valueOf(minutes);
+                        minute_string = "0" + String.valueOf(minutes);
                 }
                 if (hour == 0) {
                     hour_string = valueOf(12);
                 }
-
                 if (hour > 12) {
                     time_of_day = "PM";
                     hour_string = valueOf(hour - 12);
@@ -87,14 +100,16 @@ public class AlarmClock extends AppCompatActivity { //implements AdapterView.OnI
 
                 set_alarm_text("Alarm set for " + hour_string + ":"
                         + minute_string + " " + time_of_day);
-
                 my_intent.putExtra("extra", "alarm on");
+                my_intent.putExtra("sound_choice", choose_sound);
 
-                //Create pending intent to delay intent until user specifies time
-                pending_intent = PendingIntent.getBroadcast(AlarmClock.this, 0, my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                /* Create pending intent to delay intent until user specifies time */
+                pending_intent = PendingIntent.getBroadcast(AlarmClock.this, 0,
+                        my_intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                //Set Alarm Manager
-                alarm_manager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                /* Set Alarm Manager */
+                alarm_manager.set(AlarmManager.RTC_WAKEUP,
+                        calendar.getTimeInMillis(),
                         pending_intent);
             }
         });
@@ -105,6 +120,7 @@ public class AlarmClock extends AppCompatActivity { //implements AdapterView.OnI
                 alarm_manager.cancel(pending_intent);
 
                 my_intent.putExtra("extra", "alarm off");
+                my_intent.putExtra("sound_choice", choose_sound);
                 sendBroadcast(my_intent);
             }
         });
@@ -126,5 +142,15 @@ public class AlarmClock extends AppCompatActivity { //implements AdapterView.OnI
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+        choose_sound = (int) id;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        // Interface call back
     }
 }

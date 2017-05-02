@@ -6,6 +6,9 @@
     <string name="Lap">Lap</string>
     <string name="initial_time">0:00:000</string>
     <string name="quote">Quote</string>
+    <string name="enter_content">Enter Content</string>
+    <string name="enter_title">Enter Title</string>
+    <string name="button_save">Save</string>
 
     <string-array name="whale_array">
         <item>Choose a ringtone</item>
@@ -17,8 +20,8 @@
         <item>Requiem for a Fish</item>
         <item>Springish</item>
         <item>Take Me Higher</item>
-        <item>The Entertainer</item>
     </string-array>
+
     <string name="title_activity_food_entry">FoodEntry</string>
 
 </resources>

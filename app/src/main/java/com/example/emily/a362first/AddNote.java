@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class AddReflection extends AppCompatActivity {
+public class AddNote extends AppCompatActivity {
     public TextView dateText;
 
     @Override

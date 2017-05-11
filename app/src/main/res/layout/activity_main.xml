@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_alignParentStart="true"
     android:layout_alignParentTop="true"
+    android:background="@drawable/background_main_activity"
     android:fillViewport="true"
     android:focusable="false"
     android:focusableInTouchMode="true"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:background="@drawable/background_main_activity"
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <RelativeLayout
@@ -23,104 +23,106 @@
             android:id="@+id/stepcounter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="000"
-            android:textColor="#fffaff"
-            android:textAlignment="center"
-            android:textSize="24sp"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:text="000"
+            android:textAlignment="center"
+            android:textColor="#fffaff"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/stepcounter_Textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/stepcounter"
+            android:layout_centerHorizontal="true"
             android:text="Step Counter:"
             android:textColor="#fffaff"
-            android:textSize="20sp"
-            android:layout_above="@+id/stepcounter"
-            android:layout_centerHorizontal="true" />
+            android:textSize="20sp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btnToDo"
-            app:backgroundTint="#81cbc4"
-            android:src="@drawable/icon_todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:elevation="2dp"
-            android:onClick="openToDO"
             android:layout_above="@+id/stepcounter_Textview"
             android:layout_alignStart="@+id/stepcounter_Textview"
-            android:layout_marginBottom="22dp" />
+            android:layout_marginBottom="22dp"
+            android:onClick="openToDO"
+            android:src="@drawable/icon_todo"
+            app:backgroundTint="#81cbc4"
+            app:elevation="2dp" />
 
         <TextView
             android:id="@+id/quote"
             android:layout_width="200dp"
             android:layout_height="80dp"
+            android:layout_above="@+id/btnWeather"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:gravity="start"
             android:text=""
             android:textColor="#fffaff"
-            android:textStyle="italic"
             android:textSize="15sp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="true" />
+            android:textStyle="italic" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btnOpenDiary"
-            android:onClick="openDiary"
-            app:backgroundTint="#81cbc4"
-            android:src="@drawable/icon_food_diary"
-            app:elevation="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignTop="@+id/btnToDo"
-            android:layout_alignParentEnd="true" />
+            android:onClick="openDiary"
+            android:src="@drawable/icon_food_diary"
+            app:backgroundTint="#81cbc4"
+            app:elevation="2dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btnWeather"
-            app:backgroundTint="#81cbc4"
-            android:src="@drawable/icon_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:elevation="2dp"
+            android:layout_above="@+id/btnToDo"
+            android:layout_alignStart="@+id/btnAlarmClock"
+            android:layout_marginBottom="30dp"
             android:onClick="openStopwatch"
             android:paddingBottom="30dp"
-            android:layout_marginBottom="30dp"
-            android:layout_above="@+id/btnToDo"
-            android:layout_alignStart="@+id/btnAlarmClock" />
+            android:src="@drawable/icon_weather"
+            app:backgroundTint="#81cbc4"
+            app:elevation="2dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btnOpenStopWatch"
-            app:backgroundTint="#81cbc4"
-            android:src="@drawable/icon_stopwatch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:elevation="2dp"
-            android:onClick="openStopwatch"
             android:layout_alignTop="@+id/btnWeather"
-            android:layout_toStartOf="@+id/btnOpenDiary" />
+            android:layout_toStartOf="@+id/btnOpenDiary"
+            android:onClick="openStopwatch"
+            android:src="@drawable/icon_stopwatch"
+            app:backgroundTint="#81cbc4"
+            app:elevation="2dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btnAlarmClock"
-            android:onClick="openAlarmClock"
-            app:backgroundTint="#81cbc4"
-            android:src="@drawable/alarm_clock2"
-            app:elevation="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/btnToDo" />
+            android:layout_toEndOf="@+id/btnToDo"
+            android:onClick="openAlarmClock"
+            android:src="@drawable/alarm_clock2"
+            app:backgroundTint="#81cbc4"
+            app:elevation="2dp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btnNotes"
-            android:onClick="openReflection"
-            app:backgroundTint="#81cbc4"
-            android:src="@drawable/icon_reflection"
-            android:elevation="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/btnOpenStopWatch"
-            android:layout_marginStart="11dp" />
+            android:layout_marginStart="11dp"
+            android:elevation="2dp"
+            android:onClick="openReflection"
+            android:src="@drawable/icon_reflection"
+            app:backgroundTint="#81cbc4" />
 
     </RelativeLayout>
 </ScrollView>

@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         /* Quote of the Day */
         QoTD = (TextView) findViewById(R.id.quote);
+
         new DownloadXML().execute(URL);
 
         /* Weather */

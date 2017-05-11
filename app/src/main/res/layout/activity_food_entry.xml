@@ -4,6 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_generic"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -24,6 +25,7 @@
         android:text="Food Name:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#fffaff"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -35,6 +37,7 @@
 
     <TextView
         android:text="Calories:"
+        android:textColor="#fffaff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
@@ -61,6 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/rectangle_button_transparent"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/button"
@@ -71,8 +75,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/button"
+        android:background="@drawable/rectangle_button_transparent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/cancel"
         android:onClick="Cancel" />
+
+    <TextView
+        android:text="Date: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:textColor="#fffaff"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView5"
+        android:textSize="24sp"
+        android:layout_toStartOf="@+id/editText2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/editText3" />
+
 </RelativeLayout>

@@ -3,42 +3,74 @@
     package="com.example.emily.a362first">
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Lifestyle App"
+        android:label="FitLife"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".TDLIST">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
+        <activity
+            android:name=".TDLIST"
+            android:screenOrientation="portrait"
+            android:label="To Do List" />
+
 
         <service
             android:name=".RingtonePlayingService"
-            android:enabled="true"/>
+            android:enabled="true" />
 
-        <activity android:name=".Stopwatch" />
-        <activity android:name=".AlarmClock" />
-        <activity android:name=".AddReflection" />
-        <activity android:name=".Reflection" />
-        <activity android:name=".Diary" />
-        <activity android:name=".Home" />
+        <activity
+            android:name=".Stopwatch"
+            android:screenOrientation="portrait"
+            android:label="Stopwatch" />
+
+        <activity
+            android:name=".AlarmClock"
+            android:screenOrientation="portrait"
+            android:label="Alarm Clock" />
+
+        <activity
+            android:name=".AddNote"
+            android:screenOrientation="portrait"
+            android:label="Add Note" />
+
+        <activity
+            android:name=".Notes"
+            android:screenOrientation="portrait"
+            android:label="Notes" />
+
+        <activity
+            android:name=".ViewNote"
+            android:screenOrientation="portrait"
+            android:label="Notes" />
+
+        <activity
+            android:name=".Diary"
+            android:screenOrientation="portrait"
+            android:label="Food Log" />
+
+        <activity
+            android:name=".Home"
+            android:screenOrientation="portrait" />
+
         <receiver android:name=".Alarm_Receiver" />
+
         <activity
             android:name=".FoodEntry"
             android:label="@string/title_activity_food_entry"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:screenOrientation="portrait" />
 
     </application>
 </manifest>

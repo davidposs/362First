@@ -1,9 +1,9 @@
 package com.example.emily.a362first;
 
-import android.app.Activity;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 /**
  * Created by Emily on 3/7/2017.
  */
-public class TDLIST extends Activity {
+public class TDLIST extends AppCompatActivity {
     private ArrayList<String> items;
     private ArrayAdapter<String> itemsAdapter;
     private ListView lvItems;
@@ -39,7 +39,7 @@ public class TDLIST extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout);
+        setContentView(R.layout.activity_todo);
         // ADD HERE
         lvItems = (ListView) findViewById(R.id.lvItems);
         items = new ArrayList<String>();
@@ -56,15 +56,13 @@ public class TDLIST extends Activity {
     }
 
     private void setupListViewListener() {
-        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id){
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 TextView viewTest = (TextView) v;
                 if ((viewTest.getPaintFlags() & Paint.STRIKE_THRU_TEXT_FLAG) > 0) {
                     viewTest.setPaintFlags(viewTest.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-                }
-                else {
+                } else {
                     ((TextView) v).setPaintFlags(((TextView) v).getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 }
             }
@@ -91,13 +89,12 @@ public class TDLIST extends Activity {
     public void onAddItem(View v) {
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
         String itemText = etNewItem.getText().toString();
-        if(etNewItem.getText().length() > 0) {
+        if (etNewItem.getText().length() > 0) {
             itemsAdapter.add(itemText);
             etNewItem.setText("");
             writeItems();
-        }
-        else {
-            Toast.makeText(getApplicationContext(), "Enter Something", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "You can't enter nothing!", Toast.LENGTH_SHORT).show();
         }
     }
 

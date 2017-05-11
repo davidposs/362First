@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/background_generic2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:fillViewport="true"
+    android:focusable="false"
+    android:focusableInTouchMode="true"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".TDLIST">
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/lvItems"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/btnAddItem" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnAddItem"
+        app:backgroundTint="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_input_add"
+        app:elevation="0dp"
+        android:onClick="onAddItem"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="26dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etNewItem"
+        android:hint="Enter a new item"
+        android:layout_alignBottom="@+id/btnAddItem"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/btnAddItem" />
+
+</RelativeLayout>

@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 public class FoodEntry extends AppCompatActivity {
 
+
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     @Override
@@ -26,19 +27,38 @@ public class FoodEntry extends AppCompatActivity {
         String cal = Cal.getText().toString();
         int calories = Integer.parseInt(cal);
 
+
+        //------Date------------
+        EditText Date = (EditText) findViewById(R.id.editText3);
+        String date = Date.getText().toString();
+
+
         //Toast toast = Toast.makeText(getApplicationContext(), "The values are: " + newLog.getFood() + " " + newLog.getCal() + " " + newLog.getLogs(), Toast.LENGTH_LONG);
         //toast.show();
         int num = 1;
 
         Intent intent = new Intent(this, Diary.class);
         intent.putExtra("Main", "yes");
+
         intent.putExtra("Food", food);
+
         intent.putExtra("Calories", calories);
+        //------------Date----------
+        intent.putExtra("Date", date);
+        //---------------------------
         intent.putExtra("Count", num);
+
+
         setResult(Diary.RESULT_OK, intent);
+
+
         finish();
+
+
         //startActivity(intent);
         num++;
+
+
     }
 
     public void Cancel(View view) {
@@ -48,14 +68,19 @@ public class FoodEntry extends AppCompatActivity {
     }
 
     public static String getString(Intent intent) {
+
         return intent.getStringExtra("Food");
 
     }
-
     public static int getInt(Intent intent) {
         return intent.getIntExtra("Calories", 0);
     }
 
+    //-------------Date-----------
+    public static String getDate(Intent intent) {
+        return intent.getStringExtra("Date");
+    }
+}
     /*@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -69,4 +94,3 @@ public class FoodEntry extends AppCompatActivity {
             }
         }
     }*/
-}

@@ -22,7 +22,7 @@ import java.util.Calendar;
 
 import static java.lang.String.valueOf;
 
-public class AlarmClock extends AppCompatActivity  implements AdapterView.OnItemSelectedListener { //implements AdapterView.OnItemSelectedListener {
+public class AlarmClock extends AppCompatActivity implements AdapterView.OnItemSelectedListener { //implements AdapterView.OnItemSelectedListener {
 
     AlarmManager alarm_manager;
     TimePicker alarm_timepicker;
@@ -88,7 +88,7 @@ public class AlarmClock extends AppCompatActivity  implements AdapterView.OnItem
                 String hour_string = String.valueOf(hour);
                 String time_of_day = "AM";
                 if (minutes < 10) {
-                        minute_string = "0" + String.valueOf(minutes);
+                    minute_string = "0" + String.valueOf(minutes);
                 }
                 if (hour == 0) {
                     hour_string = valueOf(12);

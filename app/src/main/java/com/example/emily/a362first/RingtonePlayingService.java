@@ -54,7 +54,7 @@ public class RingtonePlayingService extends Service {
         Notification notification_popup = new Notification.Builder(this)
                 .setContentTitle("Lifestyle Alarm")
                 .setContentText("Click to stop")
-                .setSmallIcon(R.drawable.alarmclock)
+                .setSmallIcon(R.drawable.icon_alarm_clock)
                 .setContentIntent(pending_alarm_clock)
                 .setAutoCancel(true)
                 .build();
@@ -88,7 +88,7 @@ public class RingtonePlayingService extends Service {
                 int song_number = rNumber.nextInt(min + max);
                 Log.e("Random number is: ", String.valueOf(song_number));
 
-                switch(song_number) { /* Randomly generated song number */
+                switch (song_number) { /* Randomly generated song number */
                     case 1:
                         media_song = MediaPlayer.create(this, R.raw.broke_for_free);
                         media_song.start();
@@ -123,8 +123,7 @@ public class RingtonePlayingService extends Service {
                         break;
                 }
 
-            }
-            else { /* User entered a value for their song */
+            } else { /* User entered a value for their song */
                 switch (sound_choice) {
                     case 1:
                         media_song = MediaPlayer.create(this, R.raw.broke_for_free);

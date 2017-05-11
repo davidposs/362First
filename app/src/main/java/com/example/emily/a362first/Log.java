@@ -6,12 +6,11 @@ package com.example.emily.a362first;
 
 public class Log {
 
-    private String name;
-    private int calories;
-
     //static variables
     private static int totalcalories = 0;
     private static int totallogs = 0;
+    private String name;
+    private int calories;
 
     //Operations
 

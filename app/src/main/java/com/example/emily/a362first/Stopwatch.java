@@ -22,14 +22,11 @@ public class Stopwatch extends AppCompatActivity {
     Handler handler;
     int seconds, minutes, milliseconds, counter;
     ListView listView;
-    ListView listViewTime;
-    String[] ListElements = new String[]{};
-    List<String> ListElementsArrayList;
+    String[] lapElements = new String[]{};
+    List<String> lapTimes;
 
-    String[] TimeElements = new String[]{};
-    List<String> ListElementsTimeList;
+    /* Lap function stuff */
     ArrayAdapter<String> adapter;
-    ArrayAdapter<String> time_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +42,16 @@ public class Stopwatch extends AppCompatActivity {
         counter = 0;
         handler = new Handler();
 
-        ListElementsArrayList =
-                new ArrayList<String>(Arrays.asList(ListElements));
+        lapTimes =
+                new ArrayList<String>(Arrays.asList(lapElements));
 
         adapter = new ArrayAdapter<String>(Stopwatch.this,
-                R.layout.stopwatch,
-                ListElementsArrayList);
+                R.layout.list_view_element, lapTimes);
+
 
         listView.setAdapter(adapter);
-
+        //listViewTime.setAdapter(time_adapter);
+        btnLap.setEnabled(false);
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,8 +83,9 @@ public class Stopwatch extends AppCompatActivity {
                 minutes = 0;
                 seconds = 0;
                 milliseconds = 0;
-                ListElementsArrayList.clear();
+                lapTimes.clear();
                 btnRestart.setEnabled(true);
+                btnLap.setEnabled(false);
                 textView.setText("00:00:000");
                 adapter.notifyDataSetChanged();
             }
@@ -97,12 +96,14 @@ public class Stopwatch extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 counter++;
-                ListElementsArrayList.add(String.valueOf(counter) + ".  "
+                android.util.Log.d("counter", counter + "");
+                lapTimes.add(counter + ".  "
                         + textView.getText().toString());
+                android.util.Log.d("after", textView.getText().toString());
+                adapter.notifyDataSetChanged();
             }
         });
     }
-
     public Runnable runnable = new Runnable() {
         public void run() {
             time_in_milliseconds = SystemClock.uptimeMillis() - start_time;
